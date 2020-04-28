@@ -73,6 +73,7 @@ repositories {
 dependencies {
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
+    implementation 'org.jboss.aerogear:aerogear-android-push:5.1.+'
 }
 
 def configureReactNativePom(def pom) {
