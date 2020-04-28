@@ -6,10 +6,17 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+<<<<<<< HEAD
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+=======
+import com.facebook.react.bridge.ReactApplicationContext;
+import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.Callback;
+>>>>>>> df4146e... Readding working android
 import com.facebook.react.bridge.ReadableMap;
 
 import org.jboss.aerogear.android.unifiedpush.MessageHandler;
@@ -22,6 +29,7 @@ import java.net.URI;
 public class RnUnifiedPushModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
+    private final ReactMessageHandler messageHandler = new ReactMessageHandler();
 
     public RnUnifiedPushModule(ReactApplicationContext reactContext) {
         super(reactContext);
