@@ -79,18 +79,6 @@ public class RnUnifiedPushModule extends ReactContextBaseJavaModule {
           });
     }
   
-    @ReactMethod
-    public void registerMessageHandler(Callback messageCallback) {
-      messageHandler.toCall = messageCallback;
-      RegistrarManager.registerMainThreadHandler(messageHandler);
-    }
-  
-    @ReactMethod
-    public void unregisterMessageHandler(Callback messageCallback) {
-      messageHandler.toCall = null;
-      RegistrarManager.unregisterMainThreadHandler(messageHandler);
-    }
-  
     private static class ReactMessageHandler implements MessageHandler {
   
       Callback toCall;
