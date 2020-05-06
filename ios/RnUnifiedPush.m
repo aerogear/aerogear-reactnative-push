@@ -35,12 +35,15 @@ RCT_EXPORT_METHOD(initialize: (NSDictionary*)config onSuccess: (RCTResponseSende
 }
 
 + (void)registerToUPS: (RCTResponseSenderBlock)callback {
-  AGDeviceRegistration *d = [[AGDeviceRegistration alloc] initWithServerURL:[NSURL URLWithString:_config[@"url"]]];
+  AGDeviceRegistration *d = [[AGDeviceRegistration alloc] initWithServerURL:[NSURL URLWithString:_config[@"pushServerURL"]]];
   [d registerWithClientInfo:^(id<AGClientDeviceInformation> clientInfo) {
+    NSDictionary* iosConfig = [_config objectForKey:@"ios"];
+    if (iosConfig == nil) {
+      iosConfig = [_config objectForKey:@"ios_token"];
+    }
     [clientInfo setDeviceToken:_deviceToken];
-    [clientInfo setVariantID:_config[@"variantId"]];
-    [clientInfo setVariantSecret:_config[@"secret"]];
-    [clientInfo setAlias:_config[@"alias"]];
+    [clientInfo setVariantID:iosConfig[@"variantID"]];
+    [clientInfo setVariantSecret:iosConfig[@"variantSecret"]];
 
     UIDevice *currentDevice = [UIDevice currentDevice];
     // set some 'useful' hardware information params
