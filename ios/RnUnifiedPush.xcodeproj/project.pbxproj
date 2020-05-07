@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B3E02948245C306500EBC2F9 /* RNUnifiedPushEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E02947245C306500EBC2F9 /* RNUnifiedPushEmitter.m */; };
 		B3E7B58A1CC2AC0600A0062D /* RnUnifiedPush.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RnUnifiedPush.m */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +25,8 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRnUnifiedPush.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRnUnifiedPush.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3E02947245C306500EBC2F9 /* RNUnifiedPushEmitter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNUnifiedPushEmitter.m; sourceTree = "<group>"; };
+		B3E02949245C307800EBC2F9 /* RNUnifiedPushEmitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNUnifiedPushEmitter.h; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RnUnifiedPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RnUnifiedPush.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RnUnifiedPush.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RnUnifiedPush.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -50,6 +53,8 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				B3E02949245C307800EBC2F9 /* RNUnifiedPushEmitter.h */,
+				B3E02947245C306500EBC2F9 /* RNUnifiedPushEmitter.m */,
 				B3E7B5881CC2AC0600A0062D /* RnUnifiedPush.h */,
 				B3E7B5891CC2AC0600A0062D /* RnUnifiedPush.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
@@ -95,6 +100,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
@@ -113,6 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3E7B58A1CC2AC0600A0062D /* RnUnifiedPush.m in Sources */,
+				B3E02948245C306500EBC2F9 /* RNUnifiedPushEmitter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +223,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-				"$(inherited)",
+					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",

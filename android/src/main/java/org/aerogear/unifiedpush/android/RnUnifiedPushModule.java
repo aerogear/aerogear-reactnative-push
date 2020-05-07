@@ -40,12 +40,13 @@ public class RnUnifiedPushModule extends ReactContextBaseJavaModule {
   
       Log.i("REG", "INIT CALLED")          ;
 
+      ReadableMap androidConfig = config.getMap("android");
+
       RegistrarManager.config("register", AeroGearFCMPushConfiguration.class)
-          .setPushServerURI(URI.create(config.getString("url")))
-          .setSenderId(config.getString("senderId"))
-          .setVariantID(config.getString("variantId"))
-          .setSecret(config.getString("secret"))
-          .setAlias(config.getString("alias"))
+          .setPushServerURI(URI.create(config.getString("pushServerURL")))
+          .setSenderId(androidConfig.getString("senderID"))
+          .setVariantID(androidConfig.getString("variantID"))
+          .setSecret(androidConfig.getString("variantSecret"))
           .asRegistrar();
   
       PushRegistrar registrar = RegistrarManager.getRegistrar("register");
@@ -77,18 +78,6 @@ public class RnUnifiedPushModule extends ReactContextBaseJavaModule {
                       });
             }
           });
-    }
-  
-    @ReactMethod
-    public void registerMessageHandler(Callback messageCallback) {
-      messageHandler.toCall = messageCallback;
-      RegistrarManager.registerMainThreadHandler(messageHandler);
-    }
-  
-    @ReactMethod
-    public void unregisterMessageHandler(Callback messageCallback) {
-      messageHandler.toCall = null;
-      RegistrarManager.unregisterMainThreadHandler(messageHandler);
     }
   
     private static class ReactMessageHandler implements MessageHandler {
