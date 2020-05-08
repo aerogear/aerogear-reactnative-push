@@ -5,27 +5,32 @@
 
 static NSData* _deviceToken;
 static NSDictionary* _config;
-static RCTResponseSenderBlock _callback;
+static RCTPromiseResolveBlock _resolve;
+static RCTPromiseRejectBlock _reject;
 static RCTResponseSenderBlock _messageHandler;
 
 @implementation RnUnifiedPush
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(initialize: (NSDictionary*)config onSuccess: (RCTResponseSenderBlock)callback) {
+RCT_EXPORT_METHOD(initialize: (NSDictionary*)config 
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject) {
   _config = config;
   if (_deviceToken != nil) {
-    [RnUnifiedPush registerToUPS:callback];
+      [RnUnifiedPush registerToUPS :resolve rejecter:reject];
   } else {
-    _callback = callback;
+    _resolve = resolve;
+    _reject = reject;
   }
 }
 
 + (void)didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
   _deviceToken = deviceToken;
     RCTLogInfo(@"getting token %@", deviceToken);
-  if (_callback != nil) {
-    [RnUnifiedPush registerToUPS: _callback];
+  if (_resolve != nil) {
+    [RnUnifiedPush registerToUPS :_resolve rejecter:_reject];
+
   }
 }
 
@@ -34,7 +39,8 @@ RCT_EXPORT_METHOD(initialize: (NSDictionary*)config onSuccess: (RCTResponseSende
   [RNUnifiedPushEmitter emitEvent:userInfo];
 }
 
-+ (void)registerToUPS: (RCTResponseSenderBlock)callback {
++ (void)registerToUPS: (RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject {
   AGDeviceRegistration *d = [[AGDeviceRegistration alloc] initWithServerURL:[NSURL URLWithString:_config[@"pushServerURL"]]];
   [d registerWithClientInfo:^(id<AGClientDeviceInformation> clientInfo) {
     NSDictionary* iosConfig = [_config objectForKey:@"ios"];
@@ -53,11 +59,10 @@ RCT_EXPORT_METHOD(initialize: (NSDictionary*)config onSuccess: (RCTResponseSende
   } success:^{
       NSLog(@"RN-IOS => UnifiedPush Server registration worked");
       NSLog(@"RN-IOS => Invoking callback");
-      callback(@[[NSNull null], @"Wow! Done!"]);
+      resolve(@[[NSNull null]]);
       NSLog(@"RN-IOS => Callback invoked");
   } failure:^(NSError * err) {
-    NSLog(@"RN-IOS => UnifiedPush Server registration Error: %@", err);
-    callback(@[err]);
+    reject( @"no_events", @"Error registering",err);
   }];
 }
 

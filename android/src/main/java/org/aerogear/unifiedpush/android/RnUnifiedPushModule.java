@@ -6,10 +6,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReadableMap;
 
 import org.jboss.aerogear.android.unifiedpush.MessageHandler;
@@ -22,7 +22,6 @@ import java.net.URI;
 public class RnUnifiedPushModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
-    private final ReactMessageHandler messageHandler = new ReactMessageHandler();
 
     public RnUnifiedPushModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -35,8 +34,8 @@ public class RnUnifiedPushModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void init(
-            ReadableMap config, final Callback successCallback, final Callback cancelCallback) {
+    public void initialize(
+            ReadableMap config, final Promise promise) {
   
       Log.i("REG", "INIT CALLED")          ;
 
@@ -60,7 +59,7 @@ public class RnUnifiedPushModule extends ReactContextBaseJavaModule {
                       new Runnable() {
                         @Override
                         public void run() {
-                          successCallback.invoke();
+                          promise.resolve(null);
                         }
                       });
             }
@@ -73,23 +72,11 @@ public class RnUnifiedPushModule extends ReactContextBaseJavaModule {
                         @Override
                         public void run() {
                           Log.e("REGISTRATION", exception.getMessage(), exception);
-                          cancelCallback.invoke(exception.getMessage());
+                          promise.reject(exception);
                         }
                       });
             }
           });
     }
-  
-    private static class ReactMessageHandler implements MessageHandler {
-  
-      Callback toCall;
-  
-      @Override
-      public synchronized void onMessage(Context context, Bundle message) {
-        if (toCall != null) {
-          toCall.invoke(message.getString("alert"));
-          toCall = null;
-        }
-      }
-    }
+
 }

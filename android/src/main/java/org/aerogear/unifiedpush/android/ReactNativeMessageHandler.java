@@ -46,10 +46,8 @@ public class ReactNativeMessageHandler implements MessageHandler {
     }
 
     private void sendToJavaScript(ReactContext reactContext, String alert) {
-        WritableMap params = Arguments.createMap();
-        params.putString("alert", alert);
         reactContext
                 .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                .emit("onDefaultMessage", params);
+                .emit("onDefaultMessage", alert);
     }
 }
