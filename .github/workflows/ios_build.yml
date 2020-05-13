@@ -1,0 +1,42 @@
+name: 'iOS Build'
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+
+    - name: Create test application
+      run: |
+        npx react-native init RNUpsEmptyApp
+      shell: bash
+
+    - name: Install test application dependencies
+      run: |
+        cd RNUpsEmptyApp
+        npm install ..
+        npm install
+      shell: bash
+
+    - name: Install pods
+      run: |
+        cd RNUpsEmptyApp/ios
+        pod install
+      shell: bash
+
+    - name: Create a simulator
+      run: |
+        xcrun simctl create test_simulator com.apple.CoreSimulator.SimDeviceType.iPhone-7 com.apple.CoreSimulator.SimRuntime.iOS-13-4
+      shell: bash
+
+    - name: Compile iOS project
+      run: |
+        cd RNUpsEmptyApp/ios
+        xcodebuild -workspace RNUpsEmptyApp.xcworkspace -configuration Debug -scheme RNUpsEmptyApp -destination 'name=test_simulator'
