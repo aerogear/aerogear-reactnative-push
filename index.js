@@ -1,5 +1,5 @@
 //import { NativeModules } from 'react-native';
-import { RNUnifiedPush } from "./lib/RNUnifiedPush";
+import {RNUnifiedPush} from './lib/RNUnifiedPush';
 
 //const { RnUnifiedPush } = NativeModules;
 
