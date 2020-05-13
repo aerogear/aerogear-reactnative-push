@@ -1,7 +1,7 @@
 {
   "name": "@aerogear/aerogear-reactnative-push",
   "title": "@aerogear/aerogear Reactnative Push",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "React Native bindings for the Android and iOS AeroGear UnifiedPush libraries.",
   "main": "index.js",
   "scripts": {
