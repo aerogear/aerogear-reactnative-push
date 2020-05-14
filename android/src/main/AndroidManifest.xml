@@ -1,7 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="org.aerogear.unifiedpush.android">
+  <application>
 
   <meta-data android:name="DEFAULT_MESSAGE_HANDLER_KEY"
         android:value="org.aerogear.unifiedpush.android.ReactNativeMessageHandler" />
+    <service android:name="org.aerogear.unifiedpush.android.ReactNativeMessageService" />
 
+  </application>
 </manifest>
