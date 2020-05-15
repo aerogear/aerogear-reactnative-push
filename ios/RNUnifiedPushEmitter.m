@@ -1,11 +1,3 @@
-//
-//  RNUnifiedPushEmitter.m
-//  RnUnifiedPush
-//
-//  Created by Massimiliano Ziccardi on 01/05/2020.
-//  Copyright © 2020 Facebook. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import <React/RCTLog.h>
 
