@@ -1,4 +1,4 @@
-name: 'iOS Build'
+name: 'Build'
 
 env:
   TEST_APP_NAME: RNUpsTestApp
@@ -9,8 +9,31 @@ env:
 on: [pull_request]
 
 jobs:
+  build-android:
+    runs-on: macos-latest
 
-  build:
+    steps:
+    - name: Checkout the repo
+      uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+
+    - name: Install test application dependencies
+      run: |
+        cd test/${{ env.TEST_APP_NAME }}
+        npm install ../..
+        npm install
+      shell: bash
+
+    - name: Compile the android project
+      run: |
+        cd test/${{ env.TEST_APP_NAME }}/android
+        gradle wrapper
+        ./gradlew clean assembleDebug
+
+  build-ios:
     runs-on: macos-latest
 
     steps:
