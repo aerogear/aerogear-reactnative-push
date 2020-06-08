@@ -28,7 +28,7 @@ public class RnUnifiedPushModule extends ReactContextBaseJavaModule {
 
     public static final String MODULE_NAME = "RnUnifiedPush";
     private final ReactApplicationContext reactContext;
-    private final ReactMessageHandler messageHandler = new ReactMessageHandler();
+    private final ReactNativeMessageHandler messageHandler = new ReactNativeMessageHandler();
 
     private static final String REACT_NATIVE_PUSH_REGISTRAR_KEY = "org.jboss.aerogear.android.unifiedpush.REGISTRAR";
     private final SharedPreferences prefs;

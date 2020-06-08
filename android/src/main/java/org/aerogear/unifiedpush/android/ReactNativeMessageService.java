@@ -10,6 +10,7 @@ import com.facebook.react.HeadlessJsTaskService;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.jstasks.HeadlessJsTaskConfig;
 
+
 public class ReactNativeMessageService extends HeadlessJsTaskService {
 
     /**
