@@ -24,6 +24,7 @@ public class ReactNativeMessageHandler implements MessageHandler {
     public void onMessage(final Context androidContext, final Bundle message) {
         if (!isAppOnForeground((androidContext))) {
             Intent serviceIntent = new Intent(androidContext, ReactNativeMessageService.class);
+
             serviceIntent.putExtra("message", message);
             androidContext.startService(serviceIntent);
             HeadlessJsTaskService.acquireWakeLockNow(androidContext);
@@ -42,7 +43,7 @@ public class ReactNativeMessageHandler implements MessageHandler {
                                         new ReactInstanceManager.ReactInstanceEventListener() {
                                             @Override
                                             public void onReactContextInitialized(ReactContext reactContext) {
-                                                sendToJavaScript(reactContext, message.getString("alert"));
+                                                sendToJavaScript(reactContext, (message));
                                                 reactInstanceManager.removeReactInstanceEventListener(this);
                                             }
                                         });
@@ -50,17 +51,17 @@ public class ReactNativeMessageHandler implements MessageHandler {
                                     reactInstanceManager.createReactContextInBackground();
                                 }
                             } else {
-                                sendToJavaScript(reactContext, message.getString("alert"));
+                                sendToJavaScript(reactContext, (message));
                             }
                         }
                     });
         }
     }
-
-    private void sendToJavaScript(ReactContext reactContext, String alert) {
+    private void sendToJavaScript(ReactContext reactContext, Bundle alert) {
+        WritableMap map = Arguments.fromBundle(alert);
         reactContext
                 .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
-                .emit("onDefaultMessage", alert);
+                .emit("onDefaultMessage", map);
     }
 
     /**

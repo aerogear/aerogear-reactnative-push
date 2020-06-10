@@ -30,7 +30,7 @@ RCT_EXPORT_MODULE();
 
 - (void)sendEvent:(NSNotification *)notification {
   RCTLogInfo(@"send %@", notification);
-    [self sendEventWithName:@"onDefaultMessage" body:notification.userInfo[@"aps"][@"alert"][@"body"]];
+    [self sendEventWithName:@"onDefaultMessage" body:notification.userInfo];
 }
 
 + (void)emitEvent:(NSDictionary*) payload
