@@ -1,3 +1,7 @@
+## [0.1.1](http://github.com/aerogear/@aerogear/aerogear-reactnative-push/compare/0.1.0...0.1.1) (2020-06-10)
+
+
+
 # [0.1.0](http://github.com/aerogear/@aerogear/aerogear-reactnative-push/compare/0.0.5...0.1.0) (2020-06-08)
 
 
