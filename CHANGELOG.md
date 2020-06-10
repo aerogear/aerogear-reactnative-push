@@ -1,3 +1,12 @@
+# [0.2.0](http://github.com/aerogear/@aerogear/aerogear-reactnative-push/compare/0.1.1...0.2.0) (2020-06-10)
+
+
+### Features
+
+* **react-native:** passing full message to service ([b9cdcfe](http://github.com/aerogear/@aerogear/aerogear-reactnative-push/commit/b9cdcfeae937b11ae2f9ca09051bb32a261c15da))
+
+
+
 ## [0.1.1](http://github.com/aerogear/@aerogear/aerogear-reactnative-push/compare/0.1.0...0.1.1) (2020-06-10)
 
 
