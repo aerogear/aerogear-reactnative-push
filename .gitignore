@@ -30,6 +30,7 @@ hs_err_pid*
 node_modules/
 npm-debug.log
 yarn-error.log
+package-lock.json
 
 # Xcode
 #
