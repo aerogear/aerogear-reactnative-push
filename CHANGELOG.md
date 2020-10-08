@@ -1,3 +1,7 @@
+## [0.2.2](http://github.com/aerogear/@aerogear/aerogear-reactnative-push/compare/0.2.1...0.2.2) (2020-10-08)
+
+
+
 ## [0.2.1](http://github.com/aerogear/@aerogear/aerogear-reactnative-push/compare/0.2.0...0.2.1) (2020-06-17)
 
 
@@ -23,10 +27,6 @@
 * added UPSEnableAppDelegate ([72bbff4](http://github.com/aerogear/@aerogear/aerogear-reactnative-push/commit/72bbff4b0a7d984b22a7c7db55e0adc350a9b8d6))
 * backgroundpush for android ([95c7bed](http://github.com/aerogear/@aerogear/aerogear-reactnative-push/commit/95c7bed707828551d63ac07578d569b7d7e9fd55))
 * two part registration ([5a639ad](http://github.com/aerogear/@aerogear/aerogear-reactnative-push/commit/5a639ad49e8d6da021592c53705a9a850c7de3bc))
-
-
-
-## [0.0.5](http://github.com/aerogear/@aerogear/aerogear-reactnative-push/compare/0.0.4...0.0.5) (2020-05-13)
 
 
 
